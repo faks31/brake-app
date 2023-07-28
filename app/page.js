@@ -5,25 +5,44 @@ import { useState } from "react";
 import categories from "./components/QuestionsData";
 
 const Home = () => {
-  const [selectedOptions, setSelectedOptions] = useState({});
+  const [selectedOptions, setSelectedOptions] = useState(
+    categories.reduce((acc, category) => ({ ...acc, [category.name]: [] }), {})
+  );
 
   const handleOptionSelection = (categoryName, option) => {
-    setSelectedOptions((prevState) => ({
-      ...prevState,
-      [categoryName]: option,
-    }));
+    setSelectedOptions((prevState) => {
+      const prevSelectedOptions = prevState[categoryName];
+      if (prevSelectedOptions.includes(option)) {
+        // If the option is already selected, remove it
+        return {
+          ...prevState,
+          [categoryName]: prevSelectedOptions.filter((item) => item !== option),
+        };
+      } else {
+        // If the option is not selected, add it
+        return {
+          ...prevState,
+          [categoryName]: [...prevSelectedOptions, option],
+        };
+      }
+    });
   };
 
   const handleDone = () => {
     const categoryNames = categories.map((category) => category.name);
-    const allCategoriesSelected = categoryNames.every(
-      (category) => selectedOptions[category]
+    const selectedOptionCounts = categoryNames.map(
+      (category) => selectedOptions[category].length
+    );
+    const selectedSingleOptions = selectedOptionCounts.filter(
+      (count) => count === 1
     );
 
-    if (allCategoriesSelected) {
+    if (selectedSingleOptions.length === 1) {
       window.location.href = "/dashboard";
     } else {
-      alert("Please select all categories before proceeding.");
+      alert(
+        "Please select exactly one option in one category before proceeding."
+      );
     }
   };
 
@@ -54,7 +73,7 @@ const Home = () => {
                         handleOptionSelection(category.name, option)
                       }
                       className={
-                        selectedOptions[category.name] === option
+                        selectedOptions[category.name].includes(option)
                           ? "btn btn-primary"
                           : "btn btn-secondary"
                       }
@@ -67,12 +86,18 @@ const Home = () => {
             ))}
             <button
               className={`btn btn-primary mt-20 ${
-                Object.keys(selectedOptions).length < categories.length
+                Object.keys(selectedOptions).filter(
+                  (category) => selectedOptions[category].length >= 1
+                ).length === 0
                   ? "disabled"
                   : ""
               }`}
               onClick={handleDone}
-              disabled={Object.keys(selectedOptions).length < categories.length}
+              disabled={
+                Object.keys(selectedOptions).filter(
+                  (category) => selectedOptions[category].length >= 1
+                ).length === 0
+              }
             >
               Done
             </button>

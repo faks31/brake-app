@@ -109,7 +109,7 @@ export default function Calendar() {
         {eventToDelete && (
           <div>
             <div className="flex items-center justify-end mb-10">
-              <button onClick={handleConfirmDelete}>
+              <button onClick={handleCancelDelete}>
                 <Image alt="" src="/close.png" width={15} height={15} />
               </button>
             </div>
