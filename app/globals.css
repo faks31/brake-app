@@ -17,11 +17,236 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  overflow: hidden;
+}
+input {
+  background-color: #e9e9e9;
+  border-radius: 8px;
+  outline: none;
+  padding: 10px;
+}
+
+select {
+  outline: none;
+  padding: 10px;
+  border-bottom: 1px solid #9e9e9e;
+}
+
+.disabled {
+  opacity: 0.5;
+}
+
+.calender-main .fc .fc-button-primary {
+  background-color: #e9e9e9;
+  color: #9e9e9e;
+  border: none;
+}
+
+.calender-main .fc .fc-button-primary:focus {
+  box-shadow: none;
+}
+
+.calender-main .fc .fc-button-primary:not(:disabled).fc-button-active:focus,
+.fc .fc-button-primary:not(:disabled):active:focus {
+  box-shadow: none;
+}
+
+.calender-main .fc .fc-button-primary:not(:disabled).fc-button-active,
+.fc .fc-button-primary:not(:disabled):active {
+  background-image: linear-gradient(to right, #6c4c98, #b14c78, #e04b5f);
+  border: none;
+}
+
+.calender-main .fc-h-event {
+  background-color: rgba(95, 118, 201, 0.3);
+  padding: 10px;
+  border-left: 2px solid #5f76c9;
+  border-right: none;
+  border-top: none;
+  border-bottom: none;
+}
+.calender-main .fc-h-event .fc-event-main {
+  color: #5f76c9;
+  font-weight: medium;
+}
+
+.calender-main .fc-v-event {
+  background-color: rgba(240, 180, 188, 0.3);
+  padding: 10px;
+  border-left: 2px solid #d56d7b;
+  border-right: none;
+  border-bottom: none;
+  border-top: none;
+}
+
+.calender-main .fc-v-event .fc-event-main {
+  color: #d56d7b;
+  font-weight: medium;
+}
+
+.calender-main .fc-timegrid-event,
+.fc-timegrid-more-link {
+  border-radius: 0;
+}
+
+.calender-main .fc-daygrid-event {
+  border-radius: 0;
+}
+
+.calender-main .fc .fc-daygrid-day.fc-day-today {
+  background-color: white;
+}
+.calender-main .fc .fc-timegrid-col.fc-day-today {
+  background-color: white;
+}
+
+.fc-col-header thead {
+  background-image: linear-gradient(
+    to right,
+    rgba(108, 76, 152, 0.5),
+    rgba(177, 76, 120, 0.5),
+    rgba(224, 75, 95, 0.5)
+  );
+}
+
+.calender-main .fc-col-header thead th {
+  padding: 10px;
+  border: none;
+}
+
+.calender-main .fc-toolbar-title {
+  background: #e9e9e9;
+  padding: 10px 20px;
+  font-size: 18px;
+  border-radius: 12px;
+  font-weight: 500;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.8rem;
+}
+
+h4 {
+  font-size: 1.5rem;
+}
+
+h5 {
+  font-size: 1.3rem;
+}
+
+h6 {
+  font-size: 1.1rem;
+}
+
+@media (max-width: 767px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
+
+  h3 {
+    font-size: 1.6rem;
+  }
+
+  h4 {
+    font-size: 1.4rem;
+  }
+
+  h5 {
+    font-size: 1.2rem;
+  }
+
+  h6 {
+    font-size: 1rem;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-image: linear-gradient(
+    to bottom,
+    rgba(108, 76, 152, 0.5),
+    rgba(177, 76, 120, 0.5),
+    rgba(224, 75, 95, 0.5)
+  );
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-image: linear-gradient(
+    to bottom,
+    rgba(108, 76, 152, 1),
+    rgba(177, 76, 120, 1),
+    rgba(224, 75, 95, 1)
+  );
+}
+
+.ReactModal__Overlay {
+  z-index: 999;
+}
+
+.ReactModal__Content {
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  max-width: 500px;
+  height: 530px;
+  width: 100%;
+  border-radius: 0 !important;
+  border-width: 4px !important;
+  border-style: solid !important;
+  border-image: linear-gradient(to right, #6c4c98, #b14c78, #e04b5f) 1 !important;
+}
+
+.btn {
+  padding: 10px 30px;
+  border-radius: 5px;
+}
+.btn-primary {
+  background-image: linear-gradient(
+    to right,
+    #6c4c98,
+    #b14c78,
+    #e04b5f
+  ) !important;
+  color: white;
+}
+
+.btn-secondary {
+  background-color: #909090;
+  color: white;
+}
+
+.event-title-field {
+  border-radius: 0;
+  border-bottom: 1px solid #e9e9e9;
+  background: transparent;
+}
+.fc-theme-standard td,
+.fc-theme-standard th {
+  border: 1px solid #ebebeb;
+}
+
+.gradient-border {
+  border-width: 4px !important;
+  border-style: solid !important;
+  border-image: linear-gradient(to right, #6c4c98, #b14c78, #e04b5f) 1;
 }
