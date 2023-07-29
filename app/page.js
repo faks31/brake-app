@@ -29,20 +29,15 @@ const Home = () => {
   };
 
   const handleDone = () => {
-    const categoryNames = categories.map((category) => category.name);
-    const selectedOptionCounts = categoryNames.map(
-      (category) => selectedOptions[category].length
-    );
-    const selectedSingleOptions = selectedOptionCounts.filter(
-      (count) => count === 1
+    // Check if there is at least one selected option in any category
+    const hasSelectedOption = Object.values(selectedOptions).some(
+      (categoryOptions) => categoryOptions.length > 0
     );
 
-    if (selectedSingleOptions.length === 1) {
+    if (hasSelectedOption) {
       window.location.href = "/dashboard";
     } else {
-      alert(
-        "Please select exactly one option in one category before proceeding."
-      );
+      console.log("Please select at least one option before proceeding.");
     }
   };
 
